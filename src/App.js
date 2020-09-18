@@ -4,14 +4,24 @@ import "./components/auth";
 import "./App.css";
 import LeftDash from "./components/left-dash";
 import Auth from "./components/auth";
+import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
+import Dashboard from "./components/dashboard/dashboard";
+// import Dashboard from "./components/dashboard/dashboard";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <LeftDash />
-        <Auth />
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/dashboard" component={Dashboard}></Route>
+          <Route path="/">
+            <div className="App">
+              <LeftDash />
+              <Auth />
+            </div>
+          </Route>
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

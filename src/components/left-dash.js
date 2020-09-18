@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { HashRouter as Router, Route, NavLink } from "react-router-dom";
-// import "../App.css";
+import "../App.css";
 
 class LeftDash extends Component {
   render() {
@@ -9,9 +9,10 @@ class LeftDash extends Component {
         <div className="header">
           <h1>WELCOME TO NIGERIA API</h1>
           <p>A Collections of API'S about everything Nigeria</p>
+          <h2>Checkout some of our popular Api's</h2>
         </div>
-        <h3>Checkout some of our popular Api's</h3>
-
+        
+           <div className="collection">
         <h3>
           <a href="#">Nigeria Universities Data</a>
         </h3>
@@ -21,6 +22,7 @@ class LeftDash extends Component {
         <h3>
           <a href="#">List of Indegenous Banks and Commerce Home</a>
         </h3>
+        </div>
       </div>
     );
   }
