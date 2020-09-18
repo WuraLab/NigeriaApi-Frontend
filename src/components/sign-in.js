@@ -1,5 +1,50 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+// import {useCookies} from 'react-cookie'
+// import { API } from '../api-service'
+// loginuser
+// signinuser
+// get uni data
+// get states data
+
+
+// export class API {
+//   static loginUser(body) {
+//     return new Promise((resolve, reject)=> {
+//     fetch(` https://rate-movie-api.herokuapp.com/auth/`,
+//     {
+//         method:'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(body)
+//       })
+//       .then((resp)=>{
+//         resolve( resp.json())
+//       })
+//     }) 
+//   }
+//   static registerUser(body) {
+//     return new Promise((resolve, reject)=> {
+//     fetch(`https://rate-movie-api.herokuapp.com/api/users/`,
+//     {
+//         method:'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(body)
+//       })
+//       .then((resp)=>{
+//         resolve( resp.json())
+//       })
+//     }) 
+//   }
+
+// }
+
+// import {API} from './api-service'
+// API.loginUser().then(()=>{//redirect}).catch(()=>{//catching errors})
+
 class SignInForm extends Component {
     constructor() {
         super();
@@ -10,8 +55,20 @@ class SignInForm extends Component {
             message: ''
         }
       
+  //       const [token, setToken] = useCookies(['Auth-token']);
 
-    }
+  //   useEffect(() => {
+  //     console.log(token['Auth-token']);
+  //     if(token['Auth-token']) window.location.href = "/dashboard";
+  // },[token])
+  //   const loginClicked = () => {
+  //     API.loginUser({state.email, state.password})
+  //     .then((resp) => setToken('Auth-token', resp.token) )
+  //     .catch((err) => console.log(err))
+  // }
+   }
+
+    
 
     handleInputChange = e => {
         const { name, value } = e.target
