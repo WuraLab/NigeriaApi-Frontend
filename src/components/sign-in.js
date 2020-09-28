@@ -1,73 +1,21 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
-// import {useCookies} from 'react-cookie'
-// import { API } from '../api-service'
-// loginuser
-// signinuser
-// get uni data
-// get states data
+import { API } from '../api-service'
+import cookie from 'react-cookies'
 
-
-// export class API {
-//   static loginUser(body) {
-//     return new Promise((resolve, reject)=> {
-//     fetch(` https://rate-movie-api.herokuapp.com/auth/`,
-//     {
-//         method:'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(body)
-//       })
-//       .then((resp)=>{
-//         resolve( resp.json())
-//       })
-//     }) 
-//   }
-//   static registerUser(body) {
-//     return new Promise((resolve, reject)=> {
-//     fetch(`https://rate-movie-api.herokuapp.com/api/users/`,
-//     {
-//         method:'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(body)
-//       })
-//       .then((resp)=>{
-//         resolve( resp.json())
-//       })
-//     }) 
-//   }
-
-// }
-
-// import {API} from './api-service'
-// API.loginUser().then(()=>{//redirect}).catch(()=>{//catching errors})
 
 class SignInForm extends Component {
     constructor() {
         super();
 
         this.state = {
-            email: '',
-            password: '',
-            message: ''
-        }
-      
-  //       const [token, setToken] = useCookies(['Auth-token']);
+          email: '',
+          password: '',
+          message: '',
+          userToken: cookie.load('userToken') || ""
+      }
 
-  //   useEffect(() => {
-  //     console.log(token['Auth-token']);
-  //     if(token['Auth-token']) window.location.href = "/dashboard";
-  // },[token])
-  //   const loginClicked = () => {
-  //     API.loginUser({state.email, state.password})
-  //     .then((resp) => setToken('Auth-token', resp.token) )
-  //     .catch((err) => console.log(err))
-  // }
    }
-
     
 
     handleInputChange = e => {
@@ -75,15 +23,48 @@ class SignInForm extends Component {
         this.setState({ [name]: value })
       }
 
-      handleSubmit = e => {
-        e.preventDefault()
+    handleError = e => {
+      new Promise(function(resolve, reject){
         const { email, password } = this.state
         if (!email && !password) {
-          this.setState({ message: 'All field are required' })
-          return
+          this.setState(
+            { 
+              message: 
+              'All field are required' 
+            }
+            )
+         reject("")
+        } else {
+          resolve()
         }
-        console.log('submitting')
+      })
+    }
+
+
+
+    onLogin = async (e) =>  {
+      e.preventDefault()
+      const { email, password } = this.state
+      let data = {
+        email,
+        password
       }
+      await API.loginUser(data).then((res) => {
+          // mutates the state userToken
+          this.setState({ userToken: res.token })
+          // saves the sate to a token
+          cookie.save('userToken', this.state.userToken, { path: '/' })
+          // console.log(cookie.loadAll() )
+
+          // redirect you to the dashboard
+          this.props.history.push('/dashboard')
+
+      }).catch(() =>{
+        // return error
+      })
+    
+
+    }
     
       clearError = () => {
         this.setState({ message: '' })
@@ -92,7 +73,7 @@ class SignInForm extends Component {
       render(){
      return(
         <div className="FormCenter">
-        <form onSubmit={this.handleSubmit} className="FormFields" onSubmit={this.handleSubmit}>
+        <form  className="FormFields">
         {this.state.message && (
               <div
                 className='alert alert-danger alert-dismissible fade show'
@@ -120,7 +101,8 @@ class SignInForm extends Component {
           </div>
 
           <div className="FormField">
-              <button className="FormField__Button mr-20">Sign In</button> <Link to="/" className="FormField__Link">Create an account</Link>
+              <button className="FormField__Button mr-20" onClick={this.onLogin} > Sign In</button> 
+              <Link to="/" className="FormField__Link">Create an account</Link>
           </div>
         </form>
       </div>
