@@ -69,13 +69,13 @@ class Dashboard extends Component {
               <div id="carouselExampleSlidesOnly" className="carousel slide" data-ride="carousel">
                 <div className="carousel-inner">
                   <div className="carousel-item active">
-            <img class="d-block w-100" src={tourism} alt="First slide"/>
+            <img class="d-block w-100" src={institution} alt="First slide"/>
         </div>
     <div className="carousel-item">
-      <img className="d-block w-100" src={tourism} alt="Second slide"/>
+      <img className="d-block w-100" src={institution} alt="Second slide"/>
              </div>
     <div className="carousel-item">
-      <img className="d-block w-100" src={tourism} alt="Third slide"/>
+      <img className="d-block w-100" src={institution} alt="Third slide"/>
              </div> 
   </div>
 </div>
