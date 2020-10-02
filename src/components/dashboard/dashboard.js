@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 // ASSETS
-import tourism from './images/tourism.jpeg'
-import industry from './images/industry.jpeg'
-import institution from './images/institution.png'
+import tourism from "./images/tourism.jpeg";
+import industry from "./images/industry.jpeg";
+import institution from "./images/institution.png";
 
 import "./dashboard.css";
 
@@ -31,7 +31,11 @@ class Dashboard extends Component {
               >
                 <ul className="navbar-nav">
                   <li className="nav-item active">
-                    <a className="nav-link" href="https://documenter.getpostman.com/view/7357882/T1Ds8uvo" target="blank"> 
+                    <a
+                      className="nav-link"
+                      href="https://documenter.getpostman.com/view/7357882/T1Ds8uvo"
+                      target="blank"
+                    >
                       Documentation
                     </a>
                   </li>
@@ -50,7 +54,7 @@ class Dashboard extends Component {
             </nav>
           </div>
         </div>
-        
+
         <div className="container">
           <div className="row my-3">
             <div className="col">
@@ -72,23 +76,21 @@ class Dashboard extends Component {
                     Universities, Polytechnics, and College of Educations
                   </p>
                   <a
-                    href="lesson-1.html"
+                    href="/institution"
                     className="btn btn-primary stretched-link"
                   >
-                    Explore API
+                    
+                      Explore API
+                  
                   </a>
                 </div>
               </div>
             </div>
             <div className="col-12 col-lg-4">
               <div className="card mb-4 mb-lg-0 border-light shadow-sm">
-                <img
-                  src={tourism}
-                  alt="tourism"
-                  className="card-img-top"
-                />
+                <img src={tourism} alt="tourism" className="card-img-top" />
                 <div className="card-body">
-                <p className="card-title h3">Tourism</p>
+                  <p className="card-title h3">Tourism</p>
                   <p className="card-text">
                     Collection of everything tourism in Nigeria like pristine
                     beaches, historical monuments,tropical forests, wildlife,
@@ -105,13 +107,9 @@ class Dashboard extends Component {
             </div>
             <div className="col-12 col-lg-4">
               <div className="card mb-4 mb-lg-0 border-light shadow-sm">
-                <img
-                  src={industry}
-                  alt="industry"
-                  className="card-img-top"
-                />
+                <img src={industry} alt="industry" className="card-img-top" />
                 <div className="card-body">
-                <p className="card-title h3">Industries</p>
+                  <p className="card-title h3">Industries</p>
                   <p className="card-text">
                     A collection of the industries and companies in Nigeria
                   </p>

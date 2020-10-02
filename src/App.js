@@ -6,6 +6,7 @@ import LeftDash from "./components/left-dash";
 import Auth from "./components/auth";
 import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
 import Dashboard from "./components/dashboard/dashboard";
+import Institution from "./components/institution/institution";
 // import Dashboard from "./components/dashboard/dashboard";
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
+        <Route exact path="/institution" component={Institution}></Route>
           <Route path="/dashboard" component={Dashboard}></Route>
           <Route path="/">
             <div className="App">
