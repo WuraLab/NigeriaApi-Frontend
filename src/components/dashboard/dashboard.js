@@ -72,7 +72,7 @@ class Dashboard extends Component {
                     Universities, Polytechnics, and College of Educations
                   </p>
                   <a
-                    href="lesson-1.html"
+                    href="/institution" target="blank"
                     className="btn btn-primary stretched-link"
                   >
                     Explore API
