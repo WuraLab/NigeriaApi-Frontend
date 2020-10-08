@@ -47,7 +47,7 @@ class Dashboard extends Component {
                     </a>
                   </li>
                   <li className="nav-item pr-3">
-                    <a className="nav-link" href="#">
+                    <a className="nav-link" href="https://github.com/WuraLab/NigeriaApi" target="blank">
                       Contribute <FontAwesomeIcon icon={['fab', 'github']} />
                     </a>
                   </li>
