@@ -16,6 +16,7 @@ class App extends Component {
         <Switch>
         <Route exact path="/institution" component={Institution}></Route>
           <Route path="/dashboard" component={Dashboard}></Route>
+          <Route path="/institution" component={Institution}></Route>
           <Route path="/">
             <div className="App">
               <LeftDash />

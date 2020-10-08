@@ -1,5 +1,10 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import { API } from '../api-service'
+import cookie from 'react-cookies'
+>>>>>>> 0de105e7161d525511c691980bd8ea73dd692588
 
 
 class SignInForm extends Component {
@@ -7,14 +12,22 @@ class SignInForm extends Component {
         super();
 
         this.state = {
+<<<<<<< HEAD
             email: '',
             password: '',
             message: ''
         }
       
   
-   }
+=======
+          email: '',
+          password: '',
+          message: '',
+          userToken: cookie.load('userToken') || ""
+      }
 
+>>>>>>> 0de105e7161d525511c691980bd8ea73dd692588
+   }
     
 
     handleInputChange = e => {
@@ -22,15 +35,48 @@ class SignInForm extends Component {
         this.setState({ [name]: value })
       }
 
-      handleSubmit = e => {
-        e.preventDefault()
+    handleError = e => {
+      new Promise(function(resolve, reject){
         const { email, password } = this.state
         if (!email && !password) {
-          this.setState({ message: 'All field are required' })
-          return
+          this.setState(
+            { 
+              message: 
+              'All field are required' 
+            }
+            )
+         reject("")
+        } else {
+          resolve()
         }
-        console.log('submitting')
+      })
+    }
+
+
+
+    onLogin = async (e) =>  {
+      e.preventDefault()
+      const { email, password } = this.state
+      let data = {
+        email,
+        password
       }
+      await API.loginUser(data).then((res) => {
+          // mutates the state userToken
+          this.setState({ userToken: res.token })
+          // saves the sate to a token
+          cookie.save('userToken', this.state.userToken, { path: '/' })
+          // console.log(cookie.loadAll() )
+
+          // redirect you to the dashboard
+          this.props.history.push('/dashboard')
+
+      }).catch(() =>{
+        // return error
+      })
+    
+
+    }
     
       clearError = () => {
         this.setState({ message: '' })
@@ -39,7 +85,7 @@ class SignInForm extends Component {
       render(){
      return(
         <div className="FormCenter">
-        <form onSubmit={this.handleSubmit} className="FormFields" onSubmit={this.handleSubmit}>
+        <form  className="FormFields">
         {this.state.message && (
               <div
                 className='alert alert-danger alert-dismissible fade show'
@@ -67,7 +113,8 @@ class SignInForm extends Component {
           </div>
 
           <div className="FormField">
-              <button className="FormField__Button mr-20">Sign In</button> <Link to="/" className="FormField__Link">Create an account</Link>
+              <button className="FormField__Button mr-20" onClick={this.onLogin} > Sign In</button> 
+              <Link to="/" className="FormField__Link">Create an account</Link>
           </div>
         </form>
       </div>
