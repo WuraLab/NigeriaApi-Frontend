@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
-
-=======
 import { Link } from "react-router-dom";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -13,18 +10,13 @@ import institution from '../dashboard/images/institution.png'
 
 
 library.add(fab, faCheckSquare, faCoffee)
->>>>>>> 0de105e7161d525511c691980bd8ea73dd692588
 class Institution extends Component {
   render() {
     return (
         <div id="header-nav">
         <div className="container">
           <div className="row">
-<<<<<<< HEAD
-            <nav className="col navbar navbar-expand-lg navbar-dark">
-=======
             <nav className="col navbar fixed-top navbar-expand-lg navbar-dark">
->>>>>>> 0de105e7161d525511c691980bd8ea73dd692588
               <a className="navbar-brand" href="index.html">
                 NIGERIA API
               </a>
@@ -65,8 +57,6 @@ class Institution extends Component {
             </nav>
           </div>
         </div>
-<<<<<<< HEAD
-=======
         {/* //  CARD SECTION============ */}
          <div className="container">
          <div className="col colhead">
@@ -114,7 +104,6 @@ class Institution extends Component {
             </div>
           </div>
         </div>
->>>>>>> 0de105e7161d525511c691980bd8ea73dd692588
         </div>
 
       

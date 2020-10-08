@@ -1,10 +1,7 @@
 import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
-=======
 import { API } from '../api-service'
 import cookie from 'react-cookies'
->>>>>>> 0de105e7161d525511c691980bd8ea73dd692588
 
 
 class SignInForm extends Component {
@@ -12,21 +9,12 @@ class SignInForm extends Component {
         super();
 
         this.state = {
-<<<<<<< HEAD
             email: '',
             password: '',
             message: ''
         }
       
   
-=======
-          email: '',
-          password: '',
-          message: '',
-          userToken: cookie.load('userToken') || ""
-      }
-
->>>>>>> 0de105e7161d525511c691980bd8ea73dd692588
    }
     
 

@@ -36,17 +36,8 @@ class Dashboard extends Component {
                 className="collapse navbar-collapse justify-content-end"
               >
                 <ul className="navbar-nav">
-<<<<<<< HEAD
-                  <li className="nav-item active">
-                    <a
-                      className="nav-link"
-                      href="https://documenter.getpostman.com/view/7357882/T1Ds8uvo"
-                      target="blank"
-                    >
-=======
                   <li className="nav-item active pr-3">
                     <a className="nav-link" href="https://documenter.getpostman.com/view/7357882/T1Ds8uvo" target="blank"> 
->>>>>>> 0de105e7161d525511c691980bd8ea73dd692588
                       Documentation
                     </a>
                   </li>
@@ -95,11 +86,7 @@ class Dashboard extends Component {
                     Universities, Polytechnics, and College of Educations
                   </p>
                   <a
-<<<<<<< HEAD
-                    href="/institution"
-=======
                     href="/institution" target="blank"
->>>>>>> 0de105e7161d525511c691980bd8ea73dd692588
                     className="btn btn-primary stretched-link"
                   >
                     
