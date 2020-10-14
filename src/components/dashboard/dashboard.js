@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 // ASSETS
 import tourism from './images/tourism.jpeg'
 import industry from './images/industry.jpeg'
 import institution from './images/institution.png'
 
 import "./dashboard.css";
+library.add(fab, faCheckSquare, faCoffee)
 
 class Dashboard extends Component {
   render() {
@@ -30,16 +36,17 @@ class Dashboard extends Component {
                 className="collapse navbar-collapse justify-content-end"
               >
                 <ul className="navbar-nav">
-                  <li className="nav-item active">
+                  <li className="nav-item active pr-3">
                     <a className="nav-link" href="https://documenter.getpostman.com/view/7357882/T1Ds8uvo" target="blank"> 
                       Documentation
                     </a>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item pr-3">
                     <a className="nav-link" href="#">
                       Generate API key
                     </a>
                   </li>
+
                   <li className="nav-item">
                     <a className="nav-link" href="https://github.com/WuraLab/NigeriaApi" target="blank">
                       Contribute
@@ -58,13 +65,21 @@ class Dashboard extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="col-12 col-lg-4">
+              <div className="col-12 col-lg-4">
               <div className="card mb-4 mb-lg-0 border-light shadow-sm">
-                <img
-                  src={institution}
-                  alt="institutions"
-                  className="card-img-top"
-                />
+              <div id="carouselExampleSlidesOnly" className="carousel slide" data-ride="carousel">
+                <div className="carousel-inner">
+                  <div className="carousel-item active">
+            <img class="d-block w-100" src={tourism} alt="First slide"/>
+        </div>
+    <div className="carousel-item">
+      <img className="d-block w-100" src={tourism} alt="Second slide"/>
+             </div>
+    <div className="carousel-item">
+      <img className="d-block w-100" src={tourism} alt="Third slide"/>
+             </div> 
+  </div>
+</div>
                 <div className="card-body">
                   <p className="card-title h3">Institutions</p>
                   <p className="card-text">
