@@ -46,9 +46,10 @@ class Dashboard extends Component {
                       Generate API key
                     </a>
                   </li>
-                  <li className="nav-item pr-3">
-                    <a className="nav-link" href="#">
-                      Contribute <FontAwesomeIcon icon={['fab', 'github']} />
+
+                  <li className="nav-item">
+                    <a className="nav-link" href="https://github.com/WuraLab/NigeriaApi" target="blank">
+                      Contribute
                     </a>
                   </li>
                 </ul>
