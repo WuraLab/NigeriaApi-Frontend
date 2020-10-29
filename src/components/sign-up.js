@@ -31,6 +31,7 @@ class SignUpForm extends Component {
       email: "",
       password: "",
       confirm: "",
+      message: "",
       //error object
       formErrors: {
         username: "",
@@ -65,16 +66,28 @@ class SignUpForm extends Component {
       `https://nigeria-api-backend.herokuapp.com/api/v1/users/`,
       { ...user }
     ).then(
-      (response) => {
-        console.log(response);
-        if (response.status === 201)
-        return (
-            this.props.history.push('/sign-in')
-        );
-    
+      (res) => {
+        console.log(res);
+        if (res.status === 201) return this.props.history.push("/sign-in");
+        // else return an error of username or password is incorrect
+        else if (res.status >= 400 && res.status <= 500) {
+          console.log(" is incorrect");
+          return this.setState({
+            message: "Email or password is incorrect",
+          });
+        } else {
+          return this.setState({
+            message:
+              "Something went wrong! Please check your network connection.",
+          });
+        }
       },
       (error) => {
         console.log(error);
+        return this.setState({
+          message:
+            "Something went wrong! Please check your network connection.",
+        });
       }
     );
   };
@@ -129,6 +142,24 @@ class SignUpForm extends Component {
     return (
       <div className="FormCenter">
         <form onSubmit={this.handleSubmit} className="FormFields">
+          {/* error handler message */}
+          {this.state.message && (
+            <div
+              className="alert alert-danger alert-dismissible fade show"
+              role="alert"
+            >
+              {this.state.message}
+              <button
+                type="button"
+                className="close"
+                onClick={this.clearError}
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          )}
+
           <div className="FormField">
             <label className="FormField__Label" htmlFor="name">
               Username

@@ -1,19 +1,84 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { faCheckSquare, faCoffee } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import cookie from "react-cookies";
+import Axios from "axios";
 
 // ASSETS
-import tourism from './images/tourism.jpeg'
-import industry from './images/industry.jpeg'
-import institution from './images/institution.png'
+import tourism from "./images/tourism.jpeg";
+import industry from "./images/industry.jpeg";
+import institution from "./images/institution.png";
 
 import "./dashboard.css";
-library.add(fab, faCheckSquare, faCoffee)
+import { Button, Modal } from "react-bootstrap";
+library.add(fab, faCheckSquare, faCoffee);
 
 class Dashboard extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      token: "",
+      modalShow: false,
+      apiKey: "",
+    };
+  }
+
+  componentDidMount() {
+    this.setState({ token: cookie.load("userToken") });
+  }
+
+  setModalShow(val) {
+    this.setState({ modalShow: val });
+  }
+
+  genrateApi = (e) => {
+    e.preventDefault();
+
+    Axios.get(
+      `https://nigeria-api-backend.herokuapp.com/api/v1/users/generateApikey`,
+      {
+        headers: {
+          //"Content-Type": "application/json",
+          Authorization: `Bearer ${this.state.token}`,
+        },
+      }
+    )
+      .then((res) => {
+        console.log(res);
+        this.setState({ apiKey: res.data.apikey });
+      })
+      .catch((err) => console.log(err));
+
+    this.setModalShow(true);
+    console.log(this.state.apiKey);
+  };
+
+  ApiModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">API Key</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h3>Developer API Key </h3>
+          <h5 className="font-weight-bold text-secondary">{props.apikey}</h5>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
   render() {
     return (
       <div id="header-nav">
@@ -37,19 +102,27 @@ class Dashboard extends Component {
               >
                 <ul className="navbar-nav">
                   <li className="nav-item active pr-3">
-                    <a className="nav-link" href="https://documenter.getpostman.com/view/7357882/T1Ds8uvo" target="blank"> 
+                    <a
+                      className="nav-link"
+                      href="https://documenter.getpostman.com/view/7357882/T1Ds8uvo"
+                      target="blank"
+                    >
                       Documentation
                     </a>
                   </li>
                   <li className="nav-item pr-3">
-                    <a className="nav-link" href="#">
+                    <a className="nav-link" href="#" onClick={this.genrateApi}>
                       Generate API key
                     </a>
                   </li>
 
-                  <li className="nav-item">
+                  <li className="nav-item pr-3">
                     <a className="nav-link" href="https://github.com/WuraLab/NigeriaApi" target="blank">
-                      Contribute
+                      Contribute <FontAwesomeIcon icon={["fab", "github"]} />
+
+                  
+      
+
                     </a>
                   </li>
                 </ul>
@@ -57,7 +130,7 @@ class Dashboard extends Component {
             </nav>
           </div>
         </div>
-        
+
         <div className="container">
           <div className="row my-3">
             <div className="col">
@@ -65,21 +138,9 @@ class Dashboard extends Component {
             </div>
           </div>
           <div className="row">
-              <div className="col-12 col-lg-4">
+            <div className="col-12 col-lg-4">
               <div className="card mb-4 mb-lg-0 border-light shadow-sm">
-              <div id="carouselExampleSlidesOnly" className="carousel slide" data-ride="carousel">
-                <div className="carousel-inner">
-                  <div className="carousel-item active">
-            <img class="d-block w-100" src={tourism} alt="First slide"/>
-        </div>
-    <div className="carousel-item">
-      <img className="d-block w-100" src={tourism} alt="Second slide"/>
-             </div>
-    <div className="carousel-item">
-      <img className="d-block w-100" src={tourism} alt="Third slide"/>
-             </div> 
-  </div>
-</div>
+                <img src={institution} alt="tourism" className="card-img-top" />
                 <div className="card-body">
                   <p className="card-title h3">Institutions</p>
                   <p className="card-text">
@@ -87,7 +148,8 @@ class Dashboard extends Component {
                     Universities, Polytechnics, and College of Educations
                   </p>
                   <a
-                    href="/institution" target="blank"
+                    href="/institution"
+                    target="blank"
                     className="btn btn-primary stretched-link"
                   >
                     Explore API
@@ -97,13 +159,9 @@ class Dashboard extends Component {
             </div>
             <div className="col-12 col-lg-4">
               <div className="card mb-4 mb-lg-0 border-light shadow-sm">
-                <img
-                  src={tourism}
-                  alt="tourism"
-                  className="card-img-top"
-                />
+                <img src={tourism} alt="tourism" className="card-img-top" />
                 <div className="card-body">
-                <p className="card-title h3">Tourism</p>
+                  <p className="card-title h3">Tourism</p>
                   <p className="card-text">
                     Collection of everything tourism in Nigeria like pristine
                     beaches, historical monuments,tropical forests, wildlife,
@@ -120,13 +178,9 @@ class Dashboard extends Component {
             </div>
             <div className="col-12 col-lg-4">
               <div className="card mb-4 mb-lg-0 border-light shadow-sm">
-                <img
-                  src={industry}
-                  alt="industry"
-                  className="card-img-top"
-                />
+                <img src={industry} alt="industry" className="card-img-top" />
                 <div className="card-body">
-                <p className="card-title h3">Industries</p>
+                  <p className="card-title h3">Industries</p>
                   <p className="card-text">
                     A collection of the industries and companies in Nigeria
                   </p>
@@ -163,6 +217,12 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
+
+        <this.ApiModal
+          show={this.state.modalShow}
+          onHide={() => this.setModalShow(false)}
+          apikey={this.state.apiKey}
+        />
       </div>
     );
   }
