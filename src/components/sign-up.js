@@ -62,6 +62,8 @@ class SignUpForm extends Component {
     //   );
     // } else console.error("form invalid");
 
+
+    
     await Axios.post(
       `https://nigeria-api-backend.herokuapp.com/api/v1/users/`,
       { ...user }
@@ -90,7 +92,9 @@ class SignUpForm extends Component {
         });
       }
     );
-  };
+    };
+  
+
 
   //validation for input types
   handleChange = (e) => {
